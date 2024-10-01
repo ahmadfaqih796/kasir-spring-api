@@ -1,0 +1,15 @@
+spring.application.name=kasir
+server.port=7000
+
+spring.datasource.username=
+spring.datasource.password=
+spring.datasource.url=
+spring.datasource.driver-class-name=
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.generate-ddl=false
+spring.jpa.properties.hibernate.jdbc.time_zone = UTC
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+
+# security.jwt.secret-key=
+# security.jwt.expiration-time=
