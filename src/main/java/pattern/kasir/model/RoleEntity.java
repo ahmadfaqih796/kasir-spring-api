@@ -42,6 +42,8 @@ public class RoleEntity {
     updatedAt = new Timestamp(System.currentTimeMillis());
   }
 
+  public RoleEntity() {}
+
   public UUID getId() {
     return id;
   }
