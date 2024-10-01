@@ -1,6 +1,7 @@
 package pattern.kasir.service;
 
 import jakarta.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,51 @@ public class RoleService implements IService<RoleDTO> {
       RoleEntity roleEntity = role.get();
       roleEntity.setName(roleDTO.getName());
       roleRepository.save(roleEntity);
+      RoleResponse roleResponse = new RoleResponse(
+        roleEntity.getId(),
+        roleEntity.getName(),
+        roleEntity.getCreatedAt(),
+        roleEntity.getUpdatedAt()
+      );
+      return ResponseEntity.ok(roleResponse);
+    }
+    return ResponseEntity.notFound().build();
+  }
+
+  @Override
+  @Transactional
+  public ResponseEntity<Object> delete(UUID id) {
+    Optional<RoleEntity> role = roleRepository.findById(id);
+    if (role.isPresent()) {
+      roleRepository.deleteById(id);
+      return ResponseEntity.ok(role.get());
+      // return ResponseEntity.ok("Role with ID " + id + " has been deleted.");
+    }
+    return ResponseEntity.notFound().build();
+  }
+
+  @Override
+  public ResponseEntity<Object> findAll() {
+    List<RoleEntity> roles = roleRepository.findAll();
+    List<RoleResponse> roleResponses = roles
+      .stream()
+      .map(role ->
+        new RoleResponse(
+          role.getId(),
+          role.getName(),
+          role.getCreatedAt(),
+          role.getUpdatedAt()
+        )
+      )
+      .toList();
+    return ResponseEntity.ok(roleResponses);
+  }
+
+  @Override
+  public ResponseEntity<Object> findById(UUID id) {
+    Optional<RoleEntity> role = roleRepository.findById(id);
+    if (role.isPresent()) {
+      RoleEntity roleEntity = role.get();
       RoleResponse roleResponse = new RoleResponse(
         roleEntity.getId(),
         roleEntity.getName(),
