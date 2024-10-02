@@ -2,19 +2,32 @@ package pattern.kasir.dto.response;
 
 import java.util.Date;
 import java.util.UUID;
+import pattern.kasir.util.DateTimeUtil;
 
 public class RoleResponse {
 
   private UUID id;
   private String name;
-  private Date createdAt;
-  private Date updatedAt;
+  private String createdAt;
+  private String updatedAt;
 
-  public RoleResponse(UUID id, String name, Date createdAt, Date updatedAt) {
+  // public RoleResponse(UUID id, String name, String createdAt, String updatedAt) {
+  //   this.id = id;
+  //   this.name = name;
+  //   this.createdAt = createdAt == null ? null : createdAt;
+  //   this.updatedAt = updatedAt == null ? null : updatedAt;
+  // }
+
+  public RoleResponse(
+    UUID id,
+    String name,
+    String createdAt,
+    String updatedAt
+  ) {
     this.id = id;
     this.name = name;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
+    this.createdAt = createdAt == null ? null : createdAt;
+    this.updatedAt = updatedAt == null ? null : updatedAt;
   }
 
   public UUID getId() {
@@ -33,19 +46,21 @@ public class RoleResponse {
     this.name = name;
   }
 
-  public Date getCreatedAt() {
+  public String getCreatedAt() {
+    System.out.println("getCreatedAt: " + createdAt);
     return createdAt;
   }
 
-  public void setCreatedAt(Date createdAt) {
+  public void setCreatedAt(String createdAt) {
     this.createdAt = createdAt;
   }
 
-  public Date getUpdatedAt() {
+  public String getUpdatedAt() {
+    System.out.println("getUpdatedAt: " + updatedAt);
     return updatedAt;
   }
 
-  public void setUpdatedAt(Date updatedAt) {
+  public void setUpdatedAt(String updatedAt) {
     this.updatedAt = updatedAt;
   }
 }

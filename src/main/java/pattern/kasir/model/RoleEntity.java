@@ -28,12 +28,20 @@ public class RoleEntity {
 
   private String name;
 
-  @Column(name = "created_at", columnDefinition = "TIMESTAMP")
+  @Column(
+    name = "created_at",
+    columnDefinition = "TIMESTAMP",
+    updatable = false
+  )
   @CreationTimestamp
   private Date createdAt = new Date();
 
   @UpdateTimestamp
-  @Column(name = "updated_at", columnDefinition = "TIMESTAMP")
+  @Column(
+    name = "updated_at",
+    columnDefinition = "TIMESTAMP",
+    insertable = false
+  )
   private Date updatedAt = new Date();
 
   public RoleEntity() {}
@@ -59,6 +67,7 @@ public class RoleEntity {
   }
 
   public Date getCreatedAt() {
+    System.out.println("getCreatedAt Role: " + createdAt);
     return createdAt;
   }
 
@@ -67,6 +76,7 @@ public class RoleEntity {
   }
 
   public Date getUpdatedAt() {
+    System.out.println("getUpdatedAt Role: " + updatedAt);
     return updatedAt;
   }
 

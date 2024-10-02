@@ -11,6 +11,7 @@ import pattern.kasir.dto.response.RoleResponse;
 import pattern.kasir.dto.validation.RoleDTO;
 import pattern.kasir.model.RoleEntity;
 import pattern.kasir.module.role.RoleRepository;
+import pattern.kasir.util.DateTimeUtil;
 
 @Service
 public class RoleService implements IService<RoleDTO> {
@@ -29,7 +30,7 @@ public class RoleService implements IService<RoleDTO> {
     RoleResponse roleResponse = new RoleResponse(
       roleEntity.getId(),
       roleEntity.getName(),
-      roleEntity.getCreatedAt(),
+      DateTimeUtil.format(roleEntity.getCreatedAt()),
       null
     );
     return ResponseEntity.ok(roleResponse);
@@ -48,8 +49,8 @@ public class RoleService implements IService<RoleDTO> {
       RoleResponse roleResponse = new RoleResponse(
         roleEntity.getId(),
         roleEntity.getName(),
-        roleEntity.getCreatedAt(),
-        roleEntity.getUpdatedAt()
+        DateTimeUtil.format(roleEntity.getCreatedAt()),
+        DateTimeUtil.format(roleEntity.getUpdatedAt())
       );
       return ResponseEntity.ok(roleResponse);
     }
@@ -77,8 +78,8 @@ public class RoleService implements IService<RoleDTO> {
         new RoleResponse(
           role.getId(),
           role.getName(),
-          role.getCreatedAt(),
-          role.getUpdatedAt()
+          DateTimeUtil.format(role.getCreatedAt()),
+          DateTimeUtil.format(role.getUpdatedAt())
         )
       )
       .toList();
@@ -93,8 +94,8 @@ public class RoleService implements IService<RoleDTO> {
       RoleResponse roleResponse = new RoleResponse(
         roleEntity.getId(),
         roleEntity.getName(),
-        roleEntity.getCreatedAt(),
-        roleEntity.getUpdatedAt()
+        DateTimeUtil.format(roleEntity.getCreatedAt()),
+        DateTimeUtil.format(roleEntity.getUpdatedAt())
       );
       return ResponseEntity.ok(roleResponse);
     }
