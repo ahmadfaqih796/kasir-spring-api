@@ -4,16 +4,15 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import java.sql.Types;
-import java.time.OffsetDateTime;
+import java.util.Date;
 import java.util.UUID;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.UuidGenerator;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import pattern.kasir.util.DateTimeUtil;
 
 @Entity
 @Table(name = "role")
@@ -29,32 +28,18 @@ public class RoleEntity {
 
   private String name;
 
-  @Column(
-    name = "created_at",
-    columnDefinition = "TIMESTAMP",
-    updatable = false
-  )
-  private OffsetDateTime createdAt;
+  @Column(name = "created_at", columnDefinition = "TIMESTAMP")
+  @CreationTimestamp
+  private Date createdAt = new Date();
 
+  @UpdateTimestamp
   @Column(name = "updated_at", columnDefinition = "TIMESTAMP")
-  private OffsetDateTime updatedAt;
-
-  @PrePersist
-  protected void onCreate() {
-    createdAt = DateTimeUtil.getCurrentTime();
-    updatedAt = DateTimeUtil.getCurrentTime();
-  }
-
-  @PreUpdate
-  protected void onUpdate() {
-    updatedAt = DateTimeUtil.getCurrentTime();
-  }
+  private Date updatedAt = new Date();
 
   public RoleEntity() {}
 
   public RoleEntity(String name) {
     this.name = name;
-    // this.updatedAt = DateTimeUtil.getCurrentTime();
   }
 
   public UUID getId() {
@@ -73,19 +58,19 @@ public class RoleEntity {
     this.name = name;
   }
 
-  public OffsetDateTime getCreatedAt() {
+  public Date getCreatedAt() {
     return createdAt;
   }
 
-  public void setCreatedAt(OffsetDateTime createdAt) {
+  public void setCreatedAt(Date createdAt) {
     this.createdAt = createdAt;
   }
 
-  public OffsetDateTime getUpdatedAt() {
+  public Date getUpdatedAt() {
     return updatedAt;
   }
 
-  public void setUpdatedAt(OffsetDateTime updatedAt) {
+  public void setUpdatedAt(Date updatedAt) {
     this.updatedAt = updatedAt;
   }
 }

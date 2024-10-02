@@ -1,21 +1,16 @@
 package pattern.kasir.dto.response;
 
-import java.time.OffsetDateTime;
+import java.util.Date;
 import java.util.UUID;
 
 public class RoleResponse {
 
   private UUID id;
   private String name;
-  private OffsetDateTime createdAt;
-  private OffsetDateTime updatedAt;
+  private Date createdAt;
+  private Date updatedAt;
 
-  public RoleResponse(
-    UUID id,
-    String name,
-    OffsetDateTime createdAt,
-    OffsetDateTime updatedAt
-  ) {
+  public RoleResponse(UUID id, String name, Date createdAt, Date updatedAt) {
     this.id = id;
     this.name = name;
     this.createdAt = createdAt;
@@ -38,19 +33,19 @@ public class RoleResponse {
     this.name = name;
   }
 
-  public OffsetDateTime getCreatedAt() {
+  public Date getCreatedAt() {
     return createdAt;
   }
 
-  public void setCreatedAt(OffsetDateTime createdAt) {
+  public void setCreatedAt(Date createdAt) {
     this.createdAt = createdAt;
   }
 
-  public OffsetDateTime getUpdatedAt() {
+  public Date getUpdatedAt() {
     return updatedAt;
   }
 
-  public void setUpdatedAt(OffsetDateTime updatedAt) {
+  public void setUpdatedAt(Date updatedAt) {
     this.updatedAt = updatedAt;
   }
 }

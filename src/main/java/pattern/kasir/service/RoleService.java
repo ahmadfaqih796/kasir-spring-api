@@ -30,12 +30,13 @@ public class RoleService implements IService<RoleDTO> {
       roleEntity.getId(),
       roleEntity.getName(),
       roleEntity.getCreatedAt(),
-      roleEntity.getUpdatedAt()
+      null
     );
     return ResponseEntity.ok(roleResponse);
   }
 
   @Override
+  @Transactional
   public ResponseEntity<Object> update(UUID id, RoleDTO roleDTO) {
     Optional<RoleEntity> role = roleRepository.findById(
       UUID.fromString(id.toString())
@@ -43,7 +44,7 @@ public class RoleService implements IService<RoleDTO> {
     if (role.isPresent()) {
       RoleEntity roleEntity = role.get();
       roleEntity.setName(roleDTO.getName());
-      roleRepository.save(roleEntity);
+      // roleRepository.save(roleEntity);y
       RoleResponse roleResponse = new RoleResponse(
         roleEntity.getId(),
         roleEntity.getName(),
@@ -61,8 +62,8 @@ public class RoleService implements IService<RoleDTO> {
     Optional<RoleEntity> role = roleRepository.findById(id);
     if (role.isPresent()) {
       roleRepository.deleteById(id);
-      return ResponseEntity.ok(role.get());
-      // return ResponseEntity.ok("Role with ID " + id + " has been deleted.");
+      // return ResponseEntity.ok(role.get());
+      return ResponseEntity.ok("Role with ID " + id + " has been deleted.");
     }
     return ResponseEntity.notFound().build();
   }
