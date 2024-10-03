@@ -12,6 +12,7 @@ import pattern.kasir.dto.validation.RoleDTO;
 import pattern.kasir.model.RoleEntity;
 import pattern.kasir.module.role.RoleRepository;
 import pattern.kasir.util.DateTimeUtil;
+import pattern.kasir.util.LoggingFile;
 
 @Service
 public class RoleService implements IService<RoleDTO> {
@@ -27,13 +28,20 @@ public class RoleService implements IService<RoleDTO> {
   public ResponseEntity<Object> save(RoleDTO roleDTO) {
     RoleEntity roleEntity = new RoleEntity(roleDTO.getName());
     roleRepository.save(roleEntity);
-    RoleResponse roleResponse = new RoleResponse(
-      roleEntity.getId(),
-      roleEntity.getName(),
-      DateTimeUtil.format(roleEntity.getCreatedAt()),
-      null
-    );
-    return ResponseEntity.ok(roleResponse);
+    try {
+      int x = 1 / 0;
+      RoleResponse roleResponse = new RoleResponse(
+        roleEntity.getId(),
+        roleEntity.getName(),
+        DateTimeUtil.format(roleEntity.getCreatedAt()),
+        null
+      );
+      return ResponseEntity.ok(roleResponse);
+    } catch (Exception e) {
+      // TODO: handle exception
+      LoggingFile.exceptionStringz("UserService", "save", e, "y");
+      return ResponseEntity.badRequest().build();
+    }
   }
 
   @Override

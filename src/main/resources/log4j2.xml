@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN ">
+    <Appenders>
+<!--        <Console name="Console" target="SYSTEM_OUT">-->
+<!--            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>-->
+<!--        </Console>-->
+        <File name="FileLogger" fileName="C:/log-app/pcm-logger.log" append="true">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+    </Appenders>
+
+<!--    LEVEL >>>>> info,warn,debug,error,fatal,trace-->
+    <Loggers>
+<!--        PENENTUAN LEVEL DI BAGIAN INI YANG NANTINYA AKAN DIJADIKAN PATOKAN YANG MANA YANG AKAN DI CETAK KE FILE-->
+        <Logger name="pattern.kasir" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="FileLogger"/>
+        </Logger>
+<!--        PENENTUAN LEVEL DI BAGIAN INI YANG NANTINYA AKAN DIJADIKAN PATOKAN YANG MANA YANG AKAN DI CETAK KE CONSOLE-->
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>
