@@ -32,10 +32,9 @@ public class DateTimeUtil {
     formatter.setTimeZone(TimeZone.getTimeZone(DEFAULT_ZONE));
     return formatter.format(dateTime);
   }
-
-  public static void main(String[] args) {
-    Date now = getCurrentTime();
-    String formatted = format(now, "yyyy-MM-dd HH:mm:ss");
-    System.out.println("Current time in Asia/Jakarta: " + formatted);
-  }
+  // public static void main(String[] args) {
+  //   Date now = getCurrentTime();
+  //   String formatted = format(now, "yyyy-MM-dd HH:mm:ss");
+  //   System.out.println("Current time in Asia/Jakarta: " + formatted);
+  // }
 }
