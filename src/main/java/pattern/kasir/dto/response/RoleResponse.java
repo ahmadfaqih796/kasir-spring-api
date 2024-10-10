@@ -1,8 +1,6 @@
 package pattern.kasir.dto.response;
 
-import java.util.Date;
 import java.util.UUID;
-import pattern.kasir.util.DateTimeUtil;
 
 public class RoleResponse {
 

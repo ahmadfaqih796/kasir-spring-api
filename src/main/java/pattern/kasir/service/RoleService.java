@@ -38,7 +38,6 @@ public class RoleService implements IService<RoleDTO> {
       );
       return ResponseEntity.ok(roleResponse);
     } catch (Exception e) {
-      // TODO: handle exception
       LoggingFile.exceptionStringz("UserService", "save", e, "y");
       return ResponseEntity.badRequest().build();
     }
