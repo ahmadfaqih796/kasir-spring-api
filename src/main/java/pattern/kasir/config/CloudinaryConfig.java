@@ -3,7 +3,6 @@ package pattern.kasir.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import pattern.kasir.security.Crypto;
 
 @Configuration
 @PropertySource("classpath:cloudnary.properties")
